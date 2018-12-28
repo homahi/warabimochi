@@ -1,0 +1,23 @@
+{
+  "name": "warabimochi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homahi/warabimochi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/homahi/warabimochi/issues"
+  },
+  "homepage": "https://github.com/homahi/warabimochi#readme",
+  "dependencies": {
+    "firebase-tools": "^6.2.2",
+    "yarn": "^1.12.3"
+  }
+}
