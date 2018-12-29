@@ -1,44 +1,28 @@
 <template lang="pug">
-  section
-    h1 title
-    p hello world
-    button(@click="onClick") button
+  .container
+    .hero 
+      h1.title わらびもち
+    section.section 
+      b-field(label="Name")
+        b-input(v-model="seminorName")
+      b-field
+        button.button.is-primary(@click="onClick") 登録
+
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
-import { State } from "vuex-class";
-import Card from "~/components/Card.vue";
 import * as firebase from "firebase";
 
-@Component({
-  components: {
-    Card
-  }
-})
+@Component
 export default class extends Vue {
-  @State people;
   private database: any;
+  seminorName = "";
 
-  asyncData({ store }) {
-    console.log(store);
-    store.dispatch("initialize");
-  }
-
-  created() {
-    console.log(process.env.firebaseProjectId);
-    firebase.initializeApp({
-      projectId: process.env.firebaseProjectId
-      // projectId: "warabimochi-160ab"
-    });
-    this.database = firebase.firestore();
-  }
+  asyncData({ store }) {}
 
   onClick() {
-    this.database.collection("users").add({
-      name: "harano",
-      email: "env"
-    });
+    alert(this.seminorName);
   }
 }
 </script>

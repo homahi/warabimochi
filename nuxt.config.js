@@ -56,11 +56,12 @@ module.exports = {
   /*
    ** Build configuration
    */
-  css: ["~/assets/css/main.css"],
+  css: [],
   build: {},
   modules: [
     "@nuxtjs/axios",
-    "~/modules/typescript.js"
+    "~/modules/typescript.js",
+    'nuxt-buefy'
   ],
   axios: {}
 }
