@@ -23,7 +23,8 @@ module.exports = {
   mode: 'spa',
   env: {
     baseUrl: process.env.BASE_URL ||
-      `http://${host}:${port}`
+      `http://${host}:${port}`,
+    firebaseProjectId: process.env.FIREBASE_PJ
   },
   head: {
     title: "tt1",
