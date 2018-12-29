@@ -7,32 +7,28 @@
         b-input(v-model="seminorName")
       b-field
         button.button.is-primary(@click="onClick") 登録
+    p(v-for="seminor of seminors")  {{seminor.name}}
 
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator";
+import { Component, Vue, State } from "nuxt-property-decorator";
 import * as firebase from "firebase";
+import { db } from "../plugins/firebase";
 
 @Component
 export default class extends Vue {
-  private database: any;
   seminorName = "";
+  @State("seminors") seminors;
 
-  asyncData({ store }) {}
+  asyncData({ store }) {
+    store.dispatch("initalize", db.collection("seminors"));
+  }
 
   onClick() {
-    alert(this.seminorName);
+    db.collection("seminors").add({
+      name: this.seminorName
+    });
   }
 }
 </script>
-<style scoped>
-.header {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-}
-</style>

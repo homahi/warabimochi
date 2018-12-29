@@ -63,5 +63,6 @@ module.exports = {
     "~/modules/typescript.js",
     'nuxt-buefy'
   ],
-  axios: {}
+  axios: {},
+  plugins: ['~/plugins/firebase']
 }

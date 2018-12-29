@@ -1,24 +1,14 @@
+import { firebaseMutations, firebaseAction } from 'vuexfire';
 export const state = () => ({
-  people: []
+  seminors: []
 })
 
 export const mutations = {
-  setPeople(state, people) {
-    state.people = people
-  }
+  ...firebaseMutations
 }
 
 export const actions = {
-  async nuxtServerInit({ commit }, { app }) {
-    const people = await app.$axios.$get(
-      "./random-data.json"
-    )
-    commit("setPeople", people.slice(0, 10))
-  },
-  async initialize({ commit }) {
-    const people = await this.$axios.$get(
-      "./random-data.json"
-    )
-    commit("setPeople", people.slice(0, 10))
-  }
+  initalize: firebaseAction(({ bindFirebaseRef }, ref) => {
+    bindFirebaseRef('seminors', ref)
+  })
 }

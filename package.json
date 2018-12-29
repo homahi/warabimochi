@@ -12,7 +12,8 @@
     "nuxt-property-decorator": "^1.2.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
-    "vuex-class": "^0.3.0"
+    "vuex-class": "^0.3.0",
+    "vuexfire": "^3.0.0-alpha.14"
   },
   "scripts": {
     "dev": "nuxt --spa",
