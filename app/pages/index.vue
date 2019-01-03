@@ -10,17 +10,18 @@
     b-table(:data="seminors" paginated detailed)
       template(slot-scope="props")
         b-table-column(field="name" label="名前" sortable) {{props.row.name}}
-        b-table-column(field="date" label="予定日" sortable) {{props.row.date}}
+        b-table-column(field="date" label="予定日" sortable) {{props.row.date ? moment(props.row.date).format('YYYY/MM/DD') : ''}}
         b-table-column(width="40")
           button.button.is-primary(@click="promptDate(props.row)") 予定登録
     b-modal(:active.sync="isDatePromptActive" has-modal-card @close="reset")
-      Date(@submit="updateDate" :date="selectedSeminor ? moment(selectedSeminor.date).toDate() : null")
+      //- Date(@submit="updateDate" :date="selectedSeminor ? moment(selectedSeminor.date).toDate() : null")
+      Date(@submit="updateDate" :date="selectedSeminor ? selectedSeminor.date : null")
     p {{selectedSeminor ? selectedSeminor.id : ''}}
 
 </template>
 
 <script lang="ts">
-import { Component, Vue, State } from "nuxt-property-decorator";
+import { Component, Vue, State, Getter } from "nuxt-property-decorator";
 import * as firebase from "firebase";
 import { db } from "../plugins/firebase";
 import Date from "../components/organisms/Date/Date";
@@ -38,10 +39,15 @@ export default class extends Vue {
   isDatePromptActive = false;
   selectedSeminor: any = null;
   moment = moment;
-  @State("seminors") seminors;
+  firestore = firebase.firestore;
+  @Getter("seminors") seminors;
 
   async asyncData({ store }) {
     store.dispatch("initalize", seminorsFB);
+  }
+
+  created() {
+    console.log(this.seminors);
   }
 
   onClick() {
@@ -59,7 +65,7 @@ export default class extends Vue {
     this.isDatePromptActive = false;
     if (this.selectedSeminor) {
       seminorsFB.doc(this.selectedSeminor!.id!).update({
-        date: moment(date).format("YYYY/MM/DD")
+        date: firebase.firestore.Timestamp.fromDate(date)
       });
     }
     this.selectedSeminor = null;
