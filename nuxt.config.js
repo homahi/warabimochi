@@ -27,7 +27,7 @@ module.exports = {
     firebaseProjectId: process.env.FIREBASE_PJ
   },
   head: {
-    title: "tt1",
+    title: "わらびもち",
     meta: [{
         charset: "utf-8"
       },
