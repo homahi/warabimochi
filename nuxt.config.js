@@ -38,7 +38,7 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "Nuxt.js project"
+        content: "勉強会の予定とか資料置き場になればいいなぁ"
       }
     ],
     link: [{
